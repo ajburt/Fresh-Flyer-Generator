@@ -46,4 +46,4 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 gem 'rails_12factor'
-ruby '2.0.0'
+ruby '2.1.5'
