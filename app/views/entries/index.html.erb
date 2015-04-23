@@ -1,0 +1,254 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<style>#list {display:none;}
+#control {position: relative; left: 9in; top: 0; height: 0px; overflow: visible;}
+    #render {background:url('https://static1.squarespace.com/static/54ac4314e4b00f7c5fc6881e/t/5537cd96e4b01e6f1f27ac18/1429720470372/freshbacknoguides.jpg'); background-size: contain; height: 11in; width: 8.5in; position: absolute; top: 0; left: 0;}
+    @media print
+    {
+        * {-webkit-print-color-adjust:exact;}
+        #control {display:none;}
+    }
+    
+    @page {margin: 0.0001in;}
+    
+.product {width: 2.483in; height: 2.57in;}
+.prodtxt {text-align: center;}
+.prodname {font-family: Rockwell; font-size: 13pt; color: #6e5931;}
+.proddisc {font-family: Gill Sans MT Pro Heavy; font-size: 13pt; color: #99ca3c;}
+.prodreg {font-family: Gill Sans MT Pro Medium; font-size: 8pt; color: #6e5931;}
+.prodimg {
+    background-size: contain !important; height: 2.033in; width: 2.483in;
+}
+    
+.coupon {width: 2.483in; height: 2.57in; background:url('https://static1.squarespace.com/static/54ac4314e4b00f7c5fc6881e/t/5537db19e4b05a14c754819c/1429723929407/coupon.png'); background-size:contain;}
+.cptxt {text-align: center; color: #fff; position: relative; top: .65in;  padding: .12in;}
+.cptxt p {
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;}
+.cpname {font-family: Gill Sans MT Pro Medium; font-size: 22pt; line-height: 20pt;}
+.cpdisc {font-family: Gill Sans MT Pro Heavy; font-size: 31pt; }
+.cpreg {font-family: Gill Sans MT Pro Medium; font-size: 7pt; text-align: justify;}
+
+    .date{font-family: Gill Sans MT Pro Heavy; font-size: 20pt; color: #fff; text-align: center; letter-spacing: .1pt;}
+    #cyclebegin{position: absolute; left: 1.02in; top: 1.07in; width: 2.25in; height: .4in; 
+    -webkit-transform: rotate(-5.1deg);
+-moz-transform: rotate(-5.1deg);
+-o-transform: rotate(-5.1deg);
+writing-mode: lr-tb;}
+    #cycleend{position: absolute; left: 5.227in; top: 1.07in; width: 2.25in; height: .4in;
+        -webkit-transform: rotate(5.1deg);
+-moz-transform: rotate(5.1deg);
+-o-transform: rotate(5.1deg);
+writing-mode: lr-tb;}
+    
+    #block1 {
+       position: absolute;
+        top: 2.397in;
+        left: .430in;
+    }
+    
+    #block2 {
+       position: absolute;
+        top: 2.397in;
+        left: 3.02in;
+    }
+    
+    #block3 {
+       position: absolute;
+        top: 2.397in;
+        left: 5.617in;
+    }
+    
+        #block4 {
+       position: absolute;
+        top: 5.077in;
+        left: .430in;
+    }
+    
+    #block5 {
+       position: absolute;
+        top: 5.077in;
+        left: 3.02in;
+    }
+    
+    #block6 {
+       position: absolute;
+        top: 5.077in;
+        left: 5.617in;
+    }
+            #block7 {
+       position: absolute;
+        top: 7.723in;
+        left: .430in;
+    }
+    
+    #block8 {
+       position: absolute;
+        top: 7.723in;
+        left: 3.02in;
+    }
+    
+    #block9 {
+       position: absolute;
+        top: 7.723in;
+        left: 5.617in;
+    }
+.prodtxt p {
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: -.1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;}
+</style>
+
+<%= javascript_tag do %>
+$(window).load(function() {
+
+    });
+
+
+
+$(document).ready(function () {
+
+function generateSelectors(count) {
+    var current = 0;
+    while (current < count) {
+    current ++
+    $('#control').append('<select name="et' + current +'" id="et' + current +'"><option onclick="select()" value="bench"></option></select><br>');
+    }
+    
+};
+
+generateSelectors(9);
+     
+
+function allSelectors() {
+    return 'select[name=et1], select[name=et2], select[name=et3], select[name=et4], select[name=et5], select[name=et6],     select[name=et7], select[name=et8], select[name=et9]'
+};
+
+<% @entries.each do |entry| %>
+$(allSelectors()).append('<option onclick="select()" value="<%= entry.discount %>|<%= entry.base %>|<%= entry.picture %>|<%= entry.coupon %>"><%= entry.name %></option>');
+<% end %>
+
+function postEntry(y) {
+var name = $('#et' + y + ' option:selected').text();
+var elementy = document.getElementById('et'+y);
+var ev = elementy.value;
+var proc = ev.split("|");
+var discount = proc[0]
+var regular = proc[1]
+var img = proc[2]
+var coup = proc[3]
+
+var rendprod = "<div class='product'><div class='prodimg' style='background:url(" + img + ");'></div><div class='prodtxt'><p class='prodname'>" + name + "</p><p class='proddisc'>"+ discount + "</p><p class='prodreg'>" + regular + "</p></div></div>";
+
+var rendercoup = '<div class="coupon"> <div class="cptxt"> <p class="cpdisc">' + discount + '</p><p class="cpname">' + name + '</p><p class="cpreg">' + regular + '</p> </div></div>'
+
+if (coup.length < 5) {
+    //if coupon
+    $("#block"+y).html(rendercoup);
+} else { 
+    //if product
+    $("#block"+y).html(rendprod);
+}
+
+};
+
+
+
+$(allSelectors()).click(function() {
+var postUpdates = 10
+var postBegin = 1
+while (postUpdates > postBegin) {
+postEntry(postBegin)
+postBegin++
+};
+});
+
+$('#update').click(function() {
+    var cbg = $('#startdate').val();
+    $('#cyclebegin').html(cbg)
+    var ced = $('#enddate').val();
+    $('#cycleend').html(ced)
+});
+
+$('#regtoggle').click(function() {
+        $('.prodreg').slideToggle('fast')
+});
+
+$('#toggleview, #toggleview2').click(function() {
+        $('#control, #render, #list').toggle();
+});
+
+
+
+
+
+
+
+$("#print").append(' Yes');
+});
+
+
+
+
+<% end %>
+
+
+<div id="control">
+    <div id="print">Working? </div>
+    <button type="button" id="update">Update</button><button type="button" id="regtoggle">Toggle Regs</button><button type="button" id="imggen">Img</button><button type="button" id="toggleview">Edit Items</button><%= link_to "<button>Add</button>".html_safe, new_entry_path %><input type="button" value="Print"
+onclick="window.print();return false;" /><br>
+    <input type="text" id="startdate" value="Start Date"><input type="text" id="enddate" value="End Date"><br>
+</div>
+
+<div id="render">
+    <div id="cyclebegin" class="date">April 22nd</div>
+    <div id="cycleend" class="date">April 28th</div>
+    
+    <div id="block1"></div>
+    <div id="block2"></div>
+    <div id="block3"></div>    
+    <div id="block4"></div>
+    <div id="block5"></div>
+    <div id="block6"></div>
+    <div id="block7"></div>
+    <div id="block8"></div>
+    <div id="block9"></div>    
+</div>
+
+<div id="list"><h1>Listing entries</h1><button type="button" id="toggleview2">Print View</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Discount</th>
+      <th>Base</th>
+      <th>Picture</th>
+      <th>Coupon</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.name %></td>
+        <td><%= entry.discount %></td>
+        <td><%= entry.base %></td>
+        <td style="max-width: 50px; overflow: hidden;"><%= entry.picture %></td>
+        <td><%= entry.coupon %></td>
+        <td><%= entry.type %></td>
+        <td><%= link_to 'Show', entry %></td>
+        <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
+        <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+    <%= link_to 'New Entry', new_entry_path %></div>

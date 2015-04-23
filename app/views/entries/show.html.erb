@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @entry.name %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @entry.discount %>
+</p>
+
+<p>
+  <strong>Base:</strong>
+  <%= @entry.base %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= @entry.picture %>
+</p>
+
+<p>
+  <strong>Coupon:</strong>
+  <%= @entry.coupon %>
+</p>
+
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', entries_path %>
