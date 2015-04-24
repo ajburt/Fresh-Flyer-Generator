@@ -16,7 +16,7 @@
 .proddisc {font-family: Gill Sans MT Pro Heavy; font-size: 13pt; color: #99ca3c;}
 .prodreg {font-family: Gill Sans MT Pro Medium; font-size: 8pt; color: #6e5931;}
 .prodimg {
-    background-size: cover !important; background-repeat: no-repeat; height: 2.033in; width: 2.483in;
+    background-size: cover !important; background-repeat: no-repeat; height: 2.033in; width: 2.483in; background-position: center center; 
 }
     
 .coupon {width: 2.483in; height: 2.57in;  background:url('https://static1.squarespace.com/static/54ac4314e4b00f7c5fc6881e/t/5537db19e4b05a14c754819c/1429723929407/coupon.png'); background-size:contain;}
@@ -237,7 +237,7 @@ onclick="window.print();return false;" /><br>
       <th>Picture</th>
       <th>Coupon</th>
       <th>Type</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -252,7 +252,7 @@ onclick="window.print();return false;" /><br>
         <td><%= entry.type %></td>
         <td><%= link_to 'Show', entry %></td>
         <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
-        <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
     <% end %>
   </tbody>
