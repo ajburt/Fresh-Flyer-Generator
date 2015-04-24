@@ -114,7 +114,7 @@ function generateSelectors(count) {
     var current = 0;
     while (current < count) {
     current ++
-    $('#control').append('<select name="et' + current +'" id="et' + current +'"><option onclick="select()" value="bench"></option></select><br>');
+    $('#control').append('Selection #'+current+': <select name="et' + current +'" id="et' + current +'"><option onclick="select()" value="bench"></option></select><br>');
     }
     
 };
@@ -205,8 +205,8 @@ $("#print").append(' Yes');
 
 
 <div id="control">
-    <div id="print">Working? </div>
-    <button type="button" id="update">Update</button><button type="button" id="regtoggle">Toggle Regs</button><button type="button" id="toggleview">Edit Items</button><%= link_to "<button>Add</button>".html_safe, new_entry_path %><input type="button" value="Print"
+    
+    <button type="button" id="update">Update Dates</button><button type="button" id="regtoggle">Toggle Base Price Show/Hide</button><button type="button" id="toggleview">Edit Items</button><%= link_to "<button>Add Item</button>".html_safe, new_entry_path %><input type="button" value="Print"
 onclick="window.print();return false;" /><br>
     <input type="text" id="startdate" value="Start Date"><input type="text" id="enddate" value="End Date"><br>
 </div>
