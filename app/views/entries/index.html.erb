@@ -119,6 +119,17 @@ function generateSelectors(count) {
     
 };
 
+$('.prodname, .proddisc, .prodreg, .prodimg, .cpname, .cpdisc, .cpreg').click(function() {
+  var datacurrent = $(this).html();
+  userChoice = prompt("What would you like to change the value to? Current value " + datacurrent);
+    if(userChoice.length > 0) {
+        $(this).html(userChoice);}
+    else {
+        
+    }
+});
+                           
+                           
 generateSelectors(9);
      
 
@@ -182,15 +193,6 @@ $('#toggleview, #toggleview2').click(function() {
 
 
 
-$('.prodname, .proddisc, .prodreg, .prodimg, .cpname, .cpdisc, .cpreg').click(function() {
-  var datacurrent = $(this).html();
-  userChoice = prompt("What would you like to change the value to? Current value " + datacurrent);
-    if(userChoice.length > 0) {
-        $(this).html(userChoice);}
-    else {
-        
-    }
-});
 
 
 $("#print").append(' Yes');
