@@ -19,7 +19,7 @@
     background-size: contain !important; background-repeat: no-repeat; height: 2.033in; width: 2.483in;
 }
     
-.coupon {width: 2.483in; height: 2.57in; background:url('https://static1.squarespace.com/static/54ac4314e4b00f7c5fc6881e/t/5537db19e4b05a14c754819c/1429723929407/coupon.png'); background-size:contain;}
+.coupon {width: 2.483in; height: 2.57in;  background:url('https://static1.squarespace.com/static/54ac4314e4b00f7c5fc6881e/t/5537db19e4b05a14c754819c/1429723929407/coupon.png'); background-size:contain;}
 .cptxt {text-align: center; color: #fff; position: relative; top: .65in;  padding: .12in;}
 .cptxt p {
   -webkit-margin-before: 0em;
@@ -140,7 +140,7 @@ var regular = proc[1]
 var img = proc[2]
 var coup = proc[3]
 
-var rendprod = "<div class='product'><div class='prodimg' style='background:url(" + img + ");'></div><div class='prodtxt'><p class='prodname'>" + name + "</p><p class='proddisc'>"+ discount + "</p><p class='prodreg'>" + regular + "</p></div></div>";
+var rendprod = "<div class='product'><div class='prodimg' style='background:url(" + img + ");'></div><div class='prodtxt'><p class='prodname'>" + name + "</p><p class='proddisc'>"+ discount + "</p><p class='prodreg'>regularly " + regular + "</p></div></div>";
 
 var rendercoup = '<div class="coupon"> <div class="cptxt"> <p class="cpdisc">' + discount + '</p><p class="cpname">' + name + '</p><p class="cpreg">' + regular + '</p> </div></div>'
 
